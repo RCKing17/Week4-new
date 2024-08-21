@@ -38,8 +38,8 @@ export class LoginComponent {
       } else {
         this.errorMessage = 'Invalid email or password';
       }
-    } else {
-      this.errorMessage = 'Invalid email or password';
-    }
+    } //else {
+    //   this.errorMessage = 'Invalid email or password';
+    // }
   }
 }
