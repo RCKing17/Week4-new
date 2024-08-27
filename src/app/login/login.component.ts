@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router'
 import {FormsModule} from "@angular/forms";
 import {JsonPipe, NgIf} from "@angular/common";
-import { NgForm } from '@angular/forms';
+// import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
     JsonPipe
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email: string | undefined;
@@ -27,19 +27,30 @@ export class LoginComponent {
     {email: 'user3@gmail.com', password: '789'}
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  onSubmit(f: NgForm) {
-    console.log (f.value);
-    const user = this.users.find(({email})=>email === f.value.email);
-    if (user) {
-      if(user.password === f.value.password){
-        this.router.navigate(['/account']);
-      } else {
-        this.errorMessage = 'Invalid email or password';
-      }
-    } //else {
-    //   this.errorMessage = 'Invalid email or password';
-    // }
+//   onSubmit(f: NgForm) {
+//     this.errorMessage = ""
+//     console.log (f.value);
+//     const user = this.users.find(({email})=>email === f.value.email);
+//     if (user) {
+//       if(user.password === f.value.password){
+//         this.router.navigate(['/account']);
+//       } else {
+//         this.errorMessage = 'Invalid email or password';
+//       }
+//     } //else {
+//     //   this.errorMessage = 'Invalid email or password';
+//     // }
+//   }
+// }
+
+onLogin() {
+  const user = this.users.find(u => u.email === this.email && u.password === this.password);
+  if (user) {
+    this.router.navigate(['/account']);
+  } else {
+    this.errorMessage = 'Invalid email or password';
   }
+}
 }
